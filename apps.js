@@ -50,3 +50,43 @@ async function mainMenu() {
     // Return to the main menu after an action is performed
     mainMenu();
   }
+
+  async function viewAllDepartments() {
+    try {
+      const departments = await getAllDepartments();
+      console.table(departments);
+    } catch (error) {
+      console.error('Error fetching departments:', error);
+    }
+  }
+  
+  async function viewAllRoles() {
+    try {
+      const roles = await getAllRoles();
+      console.table(roles);
+    } catch (error) {
+      console.error('Error fetching roles:', error);
+    }
+  }
+  
+  async function addDepartmentPrompt() {
+    const { departmentName } = await inquirer.prompt({
+      name: 'departmentName',
+      type: 'input',
+      message: 'Enter the name of the new department:',
+      validate: (input) => input.trim() !== '',
+    });
+  
+    try {
+      await addDepartment(departmentName);
+      console.log('Department added successfully!');
+    } catch (error) {
+      console.error('Error adding department:', error);
+    }
+  
+    // Return to the main menu
+    mainMenu();
+  }
+  
+  // Start the application
+  mainMenu();
