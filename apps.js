@@ -3,9 +3,9 @@ const {
     getAllDepartments,
     getAllRoles,
     addDepartment,
-} = require('./db/db'); // Update the path accordingly
+} = require('./db/db');
 
-// Main menu choices
+
 const mainMenuChoices = [
     'View all departments',
     'View all roles',
@@ -33,12 +33,10 @@ async function mainMenu() {
             await viewAllRoles();
             break;
         case 'View all employees':
-            // Call the function to view all employees
             break;
         case 'Add a department':
             await addDepartmentPrompt();
             break;
-        // ... (Other cases)
         case 'Exit':
             console.log('Goodbye!');
             process.exit(0);
@@ -47,7 +45,6 @@ async function mainMenu() {
             break;
     }
 
-    // Return to the main menu after an action is performed
     mainMenu();
 }
 
@@ -84,9 +81,8 @@ async function addDepartmentPrompt() {
         console.error('Error adding department:', error);
     }
 
-    // Return to the main menu
+
     mainMenu();
 }
 
-// Start the application
 mainMenu();

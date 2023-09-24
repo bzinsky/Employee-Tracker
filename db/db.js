@@ -1,6 +1,5 @@
 const mysql = require('mysql2/promise');
 
-// Create a pool for database connections
 const pool = mysql.createPool({
     host: 'your_database_host',
     user: 'your_database_user',
@@ -11,7 +10,6 @@ const pool = mysql.createPool({
     queueLimit: 0,
 });
 
-// Function to execute a query
 async function executeQuery(query, values = []) {
     try {
         const [rows, fields] = await pool.query(query, values);
@@ -22,7 +20,6 @@ async function executeQuery(query, values = []) {
     }
 }
 
-// Functions for various database operations
 async function getAllDepartments() {
     const query = 'SELECT * FROM department';
     return executeQuery(query);
